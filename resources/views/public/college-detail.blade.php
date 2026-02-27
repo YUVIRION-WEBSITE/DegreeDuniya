@@ -1,0 +1,552 @@
+@extends('components.layouts.public-layout')
+
+@section('title', '{{ $college->name }} - EduConnect')
+
+@section('head')
+    <meta property="og:title" content="{{ $college->name }} - EduConnect">
+    <meta property="og:description" content="Explore {{ $college->name }} on EduConnect. Discover its facilities, courses, and more.">
+    <meta property="og:image" content="{{ $college->logo_path ? asset($college->logo_path) : 'https://via.placeholder.com/1200x630' }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Google Fonts for Premium Look -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #c71585; /* Magento / Deep Pink */
+            --color-primary-light: #fdf2f8; /* Soft pink bg */
+            --color-primary-muted: #fce7f3; /* Slightly darker soft pink */
+            --color-text-dark: #1e293b;
+            --color-text-muted: #64748b;
+            --color-accent: #f59e0b; /* Amber for CTA banner to complement magenta safely */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--color-text-dark);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-text-dark);
+            font-weight: 700;
+        }
+
+        .section-padding { padding: 4rem 0; }
+        .text-theme-primary { color: var(--color-primary) !important; }
+        .bg-theme-primary { background-color: var(--color-primary) !important; }
+        .bg-soft-pink { background-color: var(--color-primary-light); }
+        
+        /* Logos Section */
+        .partner-logo {
+            filter: grayscale(100%) opacity(0.6);
+            transition: all 0.3s ease;
+            max-height: 50px;
+            object-fit: contain;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        /* Courses Tabs */
+        .course-nav-link {
+            color: var(--color-text-muted);
+            border: none;
+            border-bottom: 2px solid transparent;
+            background: transparent;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .course-nav-link.active {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-primary);
+        }
+        .course-card-custom {
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            background: #fff;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card-custom:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(199, 21, 133, 0.08);
+            border-color: var(--color-primary-muted);
+        }
+        .course-card-custom img {
+            height: 160px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .btn-outline-theme {
+            color: var(--color-text-dark);
+            border: 1px solid #e2e8f0;
+            background: transparent;
+            border-radius: 6px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+        .btn-outline-theme:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        /* Admission Steps */
+        .admission-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        .step-number {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 1.25rem;
+            margin-top: 0.25rem;
+        }
+
+        /* Fees Table */
+        .fees-table-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+        }
+        .table-custom {
+            margin-bottom: 0;
+            width: 100%;
+        }
+        .table-custom thead th {
+            background-color: var(--color-text-dark);
+            color: #fff;
+            font-weight: 500;
+            padding: 1.25rem 1rem;
+            border: none;
+        }
+        .table-custom tbody tr {
+            background-color: #fff;
+        }
+        .table-custom tbody tr:nth-of-type(odd) {
+            background-color: #f8fafc;
+        }
+        .table-custom td {
+            padding: 1rem;
+            vertical-align: middle;
+            border-top: 1px solid #e2e8f0;
+            color: var(--color-text-dark);
+        }
+
+        /* Pill Layout Benefits */
+        .pill-image-container {
+            width: 100%;
+            max-width: 250px;
+            margin: 0 auto;
+            border-radius: 120px;
+            overflow: hidden;
+            aspect-ratio: 1 / 2;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .pill-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .benefit-block {
+            background: var(--color-primary-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--color-primary-muted);
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Confused CTA */
+        .cta-banner {
+            background: var(--color-accent);
+            border-radius: 12px;
+            padding: 3rem;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-banner h2 {
+            color: #fff;
+        }
+        .cta-btn {
+            background-color: var(--color-text-dark);
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        .cta-btn:hover {
+            background-color: #000;
+            color: #fff;
+        }
+
+        /* Program Benefits List */
+        .program-benefit-item {
+            background: var(--color-primary-light);
+            margin-bottom: 0.5rem;
+            padding: 1.25rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border: 1px solid var(--color-primary-muted);
+        }
+        
+        .section-title {
+            color: var(--color-text-dark);
+        }
+        .section-subtitle {
+            color: var(--color-text-muted);
+            font-size: 0.95rem;
+            max-width: 800px;
+        }
+
+        /* College Hero Section */
+        .college-hero {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 6rem 0;
+            color: #fff;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+        }
+        .college-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(to right, rgba(30, 41, 59, 0.9) 0%, rgba(30, 41, 59, 0.4) 100%);
+            z-index: 1;
+        }
+        .college-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .btn-theme-solid {
+            background-color: var(--color-primary);
+            color: #fff;
+            border: none;
+            transition: all 0.3s;
+        }
+        .btn-theme-solid:hover {
+            background-color: #a3106d; /* Darker shade of #c71585 */
+            color: #fff;
+            transform: translateY(-2px);
+        }
+    </style>
+@endsection
+
+@section('content')
+    <div style="background-color: #fff;">
+        <!-- 0️⃣ College Hero Banner -->
+        <section class="college-hero" style="background-image: url('{{ $college->banner_path ?? 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80' }}');">
+            <div class="container college-hero-content">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <span class="badge mb-3 px-3 py-2 rounded-pill fs-7 fw-medium shadow-sm" style="background-color: var(--color-primary);">Admissions Open {{ date('Y') }}</span>
+                        <h1 class="display-4 fw-bold text-white mb-3">{{ $college->name ?? 'Amity University Online' }}</h1>
+                        <p class="fs-5 text-white text-opacity-75 mb-4" style="max-width: 600px; font-family: 'Poppins', sans-serif;">{{ $college->tagline ?? 'Empowering your career with world-class online education and industry-aligned programs.' }}</p>
+                        <div class="d-flex flex-wrap gap-3 mt-4">
+                            <a href="{{ route('public.enquiry.create') }}" class="btn btn-theme-solid px-4 py-2 fw-medium rounded-3 shadow text-decoration-none">Apply Now</a>
+                            <a href="#courses" class="btn btn-outline-light px-4 py-2 fw-medium rounded-3 shadow text-decoration-none transition">Explore Courses</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1️⃣ Rankings & Accreditations -->
+        <section class="py-5 border-bottom">
+            <div class="container">
+                <h3 class="mb-4 section-title fs-4">Rankings & Accreditations</h3>
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/NIRF_India_Logo.svg/1200px-NIRF_India_Logo.svg.png" class="partner-logo" alt="NIRF" style="height: 35px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/UGC_India_Logo.png/800px-UGC_India_Logo.png" class="partner-logo" alt="UGC" style="height: 40px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/NAAC_LOGO.png/600px-NAAC_LOGO.png" class="partner-logo" alt="NAAC" style="height: 45px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/AICTE_Logo.png/600px-AICTE_Logo.png" class="partner-logo" alt="AICTE" style="height: 40px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/WES_logo.svg/1200px-WES_logo.svg.png" class="partner-logo" alt="WES" style="height: 35px;">
+                </div>
+            </div>
+        </section>
+
+        <!-- 2️⃣ Courses -->
+        <section id="courses" class="section-padding">
+            <div class="container">
+                <h2 class="mb-2 section-title">Courses</h2>
+                <p class="section-subtitle mb-4">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
+
+                <!-- Tabs -->
+                <div class="d-flex border-bottom mb-4">
+                    <button class="course-nav-link active me-3">Post Graduate (PG)</button>
+                    <button class="course-nav-link">Undergraduate (UG)</button>
+                </div>
+
+                <!-- Tab Content Grid -->
+                <div class="row g-4 mb-4">
+                    @php
+                        // Mocking data based on image provided structure if it doesn't exist
+                        $dummyCourses = [
+                            ['name' => 'Master of Business Administration', 'duration' => '2 years', 'fee' => '1,50,000'],
+                            ['name' => 'Master of Computer Applications', 'duration' => '2 years', 'fee' => '1,60,000'],
+                            ['name' => 'Master of Commerce', 'duration' => '2 years', 'fee' => '1,10,000'],
+                            ['name' => 'Master of Arts (Journalism)', 'duration' => '2 years', 'fee' => '1,20,000'],
+                        ];
+                    @endphp
+                    @foreach($dummyCourses as $index => $c)
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <div class="course-card-custom cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=400" alt="{{ $c['name'] }}">
+                                <div class="p-4 d-flex flex-column flex-grow-1">
+                                    <h5 class="fs-6 mb-3 fw-bold lh-base flex-grow-1">{{ $c['name'] }}</h5>
+                                    
+                                    <div class="d-flex align-items-center mb-2 fs-7 text-muted">
+                                        <i class="bi bi-clock me-2"></i> Duration: {{ $c['duration'] }}
+                                    </div>
+                                    <div class="d-flex align-items-center mb-4 fs-7 text-dark fw-medium">
+                                        <i class="bi bi-currency-rupee me-2"></i> Fee up to {{ $c['fee'] }}/-
+                                    </div>
+                                    
+                                    <button class="btn btn-outline-theme w-100 py-2 fs-7 mt-auto">Explore</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                
+                <div class="d-flex justify-content-between text-muted px-2 cursor-pointer">
+                    <i class="bi bi-arrow-left fs-5"></i>
+                    <i class="bi bi-arrow-right fs-5"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3️⃣ Admission Process -->
+        <section class="section-padding bg-soft-pink">
+            <div class="container">
+                <h2 class="mb-2 section-title">Admission Process of {{ $college->name ?? 'Amity University Online' }}</h2>
+                <p class="section-subtitle mb-5">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
+
+                <div class="max-w-4xl">
+                    <div class="admission-step">
+                        <div class="step-number">1</div>
+                        <div>
+                            <p class="mb-0 text-dark">Visit the official website of {{ $college->name ?? 'Amity University' }} Online. Ensure the website URL is real and not a spammy site.</p>
+                        </div>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-number">2</div>
+                        <div>
+                            <p class="mb-0 text-dark">Look out and click on the "Apply Now" link tab on the homepage browser.</p>
+                        </div>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-number">3</div>
+                        <div>
+                            <p class="mb-0 text-dark">Register with basic personal and contact details. Fill out the application form with correct details.</p>
+                        </div>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-number">4</div>
+                        <div>
+                            <p class="mb-0 text-dark">Upload scanned documents of eligibility certificates, id proof, passport size photograph, signature.</p>
+                        </div>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-number">5</div>
+                        <div>
+                            <p class="mb-0 text-dark">Complete the transaction via desired process by paying the required application fee.</p>
+                        </div>
+                    </div>
+                    <div class="admission-step">
+                        <div class="step-number">6</div>
+                        <div>
+                            <p class="mb-0 text-dark">Once application is reviewed and documents are verified, you will receive confirmation of enrollment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4️⃣ Updated Fees Table -->
+        <section class="section-padding">
+            <div class="container">
+                <h2 class="mb-2 section-title">Updated Fees for Each Courses in {{ date('Y') }}</h2>
+                <p class="section-subtitle mb-4">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
+
+                <div class="table-responsive fees-table-wrapper">
+                    <table class="table table-custom mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col" style="width: 40%">Courses</th>
+                                <th scope="col" style="width: 30%">Fees</th>
+                                <th scope="col" style="width: 30%">Years</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online MBA</td>
+                                <td>Rs 2,50,000</td>
+                                <td>2 years</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online MSC</td>
+                                <td>Rs 2,50,000</td>
+                                <td>2 years</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online BBA</td>
+                                <td>Rs 1,60,000</td>
+                                <td>3 years</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online MCA</td>
+                                <td>Rs 1,90,000</td>
+                                <td>2 years</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online BCA</td>
+                                <td>Rs 1,30,000</td>
+                                <td>3 years</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium font-poppins">Online MA</td>
+                                <td>Rs 1,20,000</td>
+                                <td>2 years</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5️⃣ Benefits with Pill Image -->
+        <section class="section-padding bg-soft-pink">
+            <div class="container">
+                <h2 class="mb-2 section-title">Benefits of {{ $college->name ?? 'Amity University Online' }}</h2>
+                <p class="section-subtitle mb-5">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
+
+                <div class="row align-items-stretch g-4">
+                    <!-- Left Column -->
+                    <div class="col-lg-4 d-flex flex-column gap-3 justify-content-between">
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">Recognized by UGC, NAAC, AICTE. Ensures your degree holds strong value and matches regular campus courses exactly.</p>
+                        </div>
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">Ranked top 3% globally by QS, reflecting the exceptional quality and standard of education.</p>
+                        </div>
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">The university offers global exposure through advanced online tools led by an international faculty.</p>
+                        </div>
+                    </div>
+
+                    <!-- Center Image (Pill) -->
+                    <div class="col-lg-4 d-flex justify-content-center align-items-center py-4 py-lg-0">
+                        <div class="pill-image-container my-auto">
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80" alt="Campus">
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="col-lg-4 d-flex flex-column gap-3 justify-content-between">
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">They are the only university offering fully interactive learning directly from home.</p>
+                        </div>
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">Easy fee financing options make {{ $college->name ?? 'Amity University Online' }} the top choice for working professionals.</p>
+                        </div>
+                        <div class="benefit-block shadow-sm">
+                            <p class="mb-0 fs-7 text-dark fw-medium lh-lg">The university partnered with top industry leaders to build career-ready modules.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6️⃣ Confused between colleges? CTA -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="cta-banner row align-items-center shadow-sm">
+                    <div class="col-lg-7 py-2 position-relative z-1">
+                        <h2 class="mb-3 fw-bold">Confused between colleges?</h2>
+                        <p class="mb-4 text-white text-opacity-75 fs-6 lh-lg pe-lg-5">Compare and list colleges that you prefer. To assure that they recommend choose the best that fits you, we connect you with the best forward.</p>
+                        <a href="{{ route('public.colleges.index') }}" class="cta-btn text-decoration-none shadow-sm">Compare Colleges</a>
+                    </div>
+                    <!-- Absolute position decorative images for larger screens -->
+                    <div class="d-none d-lg-block position-absolute end-0 top-0 h-100 w-50 pe-4 z-0">
+                        <div class="d-flex gap-3 justify-content-end align-items-center h-100">
+                             <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=200&q=80" alt="Building 1" class="rounded shadow-lg" style="height: 140px; width: 140px; object-fit: cover;">
+                             <img src="https://images.unsplash.com/photo-1523050853063-913e3e9b9efb?auto=format&fit=crop&w=200&q=80" alt="Building 2" class="rounded shadow-lg" style="height: 140px; width: 140px; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7️⃣ Program Benefits -->
+        <section class="section-padding pt-0">
+            <div class="container">
+                <h2 class="mb-2 section-title">{{ $college->name ?? 'Amity University Online' }}'s Program Benefits</h2>
+                <p class="section-subtitle mb-5">Amity University Online offers UGC-accredited online degrees, diplomas, and certifications in India, providing learners with a digitally advanced platform and globally recognized education designed to meet modern industry needs and support career growth.</p>
+
+                <div class="row align-items-center g-5">
+                    <div class="col-lg-4 text-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/University-of-the-People-Certificate-Example.jpg/800px-University-of-the-People-Certificate-Example.jpg" alt="Certificate mock" class="img-fluid rounded shadow-sm border p-2 bg-white" style="max-height: 400px; object-fit: contain;">
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="d-flex flex-column gap-3">
+                            <div class="program-benefit-item shadow-sm text-dark fw-medium lh-base">
+                                Fully backed by UGC approved online programs
+                            </div>
+                            <div class="program-benefit-item shadow-sm text-dark fw-medium lh-base">
+                                Ranked among the top 3% of universities globally
+                            </div>
+                            <div class="program-benefit-item shadow-sm text-dark fw-medium lh-base">
+                                Supports IT & Tech infrastructure standard globally
+                            </div>
+                            <div class="program-benefit-item shadow-sm text-dark fw-medium lh-base">
+                                Alumni in top tier global brands worldwide ranking
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8️⃣ Hiring Partner -->
+        <section class="py-5" style="background-color: #f8fafc;">
+            <div class="container text-center">
+                <h3 class="mb-2 section-title fs-4">Hiring Partner of {{ $college->name ?? 'Amity University Online' }}</h3>
+                <p class="section-subtitle mb-5 mx-auto text-center" style="max-width: 600px;">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
+                
+                <div class="d-flex flex-wrap justify-content-center align-items-center gap-4 gap-lg-5 pb-3">
+                    <!-- Note: For production these should be actual logos. Using text fallbacks styled as logos for now if images don't load -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/800px-Google_2015_logo.svg.png" class="partner-logo" alt="Google" style="height: 30px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/1024px-Amazon_logo.svg.png" class="partner-logo" alt="Amazon" style="height: 30px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Microsoft_logo_%282012%29.svg/1024px-Microsoft_logo_%282012%29.svg.png" class="partner-logo" alt="Microsoft" style="height: 30px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Tata_Consultancy_Services_Logo.svg/1024px-Tata_Consultancy_Services_Logo.svg.png" class="partner-logo" alt="TCS" style="height: 30px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Cognizant_logo_2022.svg/1024px-Cognizant_logo_2022.svg.png" class="partner-logo" alt="Cognizant" style="height: 25px;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Infosys_logo.svg/1024px-Infosys_logo.svg.png" class="partner-logo" alt="Infosys" style="height: 35px;">
+                </div>
+            </div>
+        </section>
+    </div>
+@endsection
