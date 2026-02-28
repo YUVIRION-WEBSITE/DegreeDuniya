@@ -279,11 +279,11 @@
             <div class="container">
                 <h3 class="mb-4 section-title fs-4">Rankings & Accreditations</h3>
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-4">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/87/NIRF_India_Logo.svg/1200px-NIRF_India_Logo.svg.png" class="partner-logo" alt="NIRF" style="height: 35px;">
+                    <img src="https://www.nirfindia.org/Images/main-logo.png" class="partner-logo" alt="NIRF" style="height: 35px;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/UGC_India_Logo.png/800px-UGC_India_Logo.png" class="partner-logo" alt="UGC" style="height: 40px;">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/NAAC_LOGO.png/600px-NAAC_LOGO.png" class="partner-logo" alt="NAAC" style="height: 45px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/cf/AICTE_Logo.png/600px-AICTE_Logo.png" class="partner-logo" alt="AICTE" style="height: 40px;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/WES_logo.svg/1200px-WES_logo.svg.png" class="partner-logo" alt="WES" style="height: 35px;">
+                    <img src="https://www.aicte.gov.in/sites/default/files/inline-images/Logo.png" class="partner-logo" alt="AICTE" style="height: 40px;">
+                    <img src="https://www.wes.org/wp-content/themes/storyware/assets/images/logo.svg" class="partner-logo" alt="WES" style="height: 35px;">
                 </div>
             </div>
         </section>
@@ -494,7 +494,7 @@
                     <div class="d-none d-lg-block position-absolute end-0 top-0 h-100 w-50 pe-4 z-0">
                         <div class="d-flex gap-3 justify-content-end align-items-center h-100">
                              <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?auto=format&fit=crop&w=200&q=80" alt="Building 1" class="rounded shadow-lg" style="height: 140px; width: 140px; object-fit: cover;">
-                             <img src="https://images.unsplash.com/photo-1523050853063-913e3e9b9efb?auto=format&fit=crop&w=200&q=80" alt="Building 2" class="rounded shadow-lg" style="height: 140px; width: 140px; object-fit: cover;">
+                             <img src="https://images.unsplash.com/photo-1689595289774-26ab69a5b106?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29sbGdlJTIwYnVpbGRpbmd8ZW58MHx8MHx8fDA%3D" alt="Building 2" class="rounded shadow-lg" style="height: 140px; width: 140px; object-fit: cover;">
                         </div>
                     </div>
                 </div>
@@ -509,7 +509,7 @@
 
                 <div class="row align-items-center g-5">
                     <div class="col-lg-4 text-center">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/University-of-the-People-Certificate-Example.jpg/800px-University-of-the-People-Certificate-Example.jpg" alt="Certificate mock" class="img-fluid rounded shadow-sm border p-2 bg-white" style="max-height: 400px; object-fit: contain;">
+                        <img src="https://images.unsplash.com/photo-1584445584400-1a7cc5de77ae?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNlcnRpZmljYXRlfGVufDB8fDB8fHww" alt="Certificate mock" class="img-fluid rounded shadow-sm border p-2 bg-white" style="max-height: 400px; object-fit: contain;">
                     </div>
                     <div class="col-lg-8">
                         <div class="d-flex flex-column gap-3">

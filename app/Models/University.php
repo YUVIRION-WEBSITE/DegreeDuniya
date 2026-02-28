@@ -19,6 +19,7 @@ class University extends Model
         'logo_path',
         'location',
         'type',
+        'rating',
     ];
 
     protected static function boot()
