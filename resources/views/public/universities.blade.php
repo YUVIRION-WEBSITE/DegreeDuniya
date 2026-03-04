@@ -145,8 +145,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-<<<<<<< HEAD
 @endsection
-=======
-@endsection
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
