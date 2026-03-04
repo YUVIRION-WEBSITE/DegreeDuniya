@@ -252,6 +252,64 @@
             color: #fff;
             transform: translateY(-2px);
         }
+
+        /* Sticky Sidebar Navigation */
+        .sticky-wrapper {
+            position: sticky;
+            top: 100px;
+            z-index: 100;
+        }
+        .sidebar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            color: var(--color-text-muted);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
+        }
+        .sidebar-nav .nav-link:hover {
+            color: var(--color-primary);
+            background-color: var(--color-primary-light);
+        }
+        .sidebar-nav .nav-link.active {
+            color: var(--color-primary);
+            font-weight: 700;
+            border-left-color: var(--color-primary);
+            background-color: var(--color-primary-light);
+        }
+
+        /* Mobile Horizontal Nav */
+        @media (max-width: 991.98px) {
+            .mobile-nav-wrapper {
+                position: sticky;
+                top: 70px;
+                background: #fff;
+                z-index: 1000;
+                border-bottom: 1px solid #e2e8f0;
+                margin-bottom: 1rem;
+            }
+            .mobile-nav {
+                display: flex;
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding: 0.5rem 0;
+            }
+            .mobile-nav::-webkit-scrollbar {
+                display: none;
+            }
+            .mobile-nav .nav-link {
+                padding: 0.5rem 1.25rem;
+                font-size: 0.85rem;
+                color: var(--color-text-muted);
+                border-bottom: 2px solid transparent;
+            }
+            .mobile-nav .nav-link.active {
+                color: var(--color-primary);
+                font-weight: 700;
+                border-bottom-color: var(--color-primary);
+            }
+        }
     </style>
 @endsection
 
@@ -274,8 +332,44 @@
             </div>
         </section>
 
-        <!-- 1️⃣ Rankings & Accreditations -->
-        <section class="py-5 border-bottom">
+        <div class="container py-4">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 d-none d-lg-block">
+                    <div class="sticky-wrapper">
+                        <nav class="sidebar-nav flex-column nav">
+                            <a class="nav-link" href="#rankings">Rankings</a>
+                            <a class="nav-link" href="#courses">Courses</a>
+                            <a class="nav-link" href="#admission-process">Admission Process</a>
+                            <a class="nav-link" href="#fees">Course Fees</a>
+                            <a class="nav-link" href="#benefits">College Benefits</a>
+                            <a class="nav-link" href="#confused">Compare Colleges</a>
+                            <a class="nav-link" href="#program-benefits">Program Benefits</a>
+                            <a class="nav-link" href="#hiring-partner">Hiring Partners</a>
+                            <a class="nav-link" href="#faq">FAQs</a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="col-lg-9">
+                    <!-- Mobile Nav -->
+                    <div class="mobile-nav-wrapper d-lg-none">
+                        <nav class="mobile-nav">
+                            <a class="nav-link" href="#rankings">Rankings</a>
+                            <a class="nav-link" href="#courses">Courses</a>
+                            <a class="nav-link" href="#admission-process">Admission</a>
+                            <a class="nav-link" href="#fees">Fees</a>
+                            <a class="nav-link" href="#benefits">Benefits</a>
+                            <a class="nav-link" href="#confused">Compare</a>
+                            <a class="nav-link" href="#program-benefits">Programs</a>
+                            <a class="nav-link" href="#hiring-partner">Hiring</a>
+                            <a class="nav-link" href="#faq">FAQ</a>
+                        </nav>
+                    </div>
+
+                    <!-- 1️⃣ Rankings & Accreditations -->
+                    <section id="rankings" class="py-5 border-bottom">
             <div class="container">
                 <h3 class="mb-4 section-title fs-4">Rankings & Accreditations</h3>
                 <div class="d-flex flex-wrap justify-content-between align-items-center gap-4">
@@ -340,7 +434,7 @@
         </section>
 
         <!-- 3️⃣ Admission Process -->
-        <section class="section-padding bg-soft-pink">
+        <section id="admission-process" class="section-padding bg-soft-pink">
             <div class="container">
                 <h2 class="mb-2 section-title">Admission Process of {{ $college->name ?? 'Amity University Online' }}</h2>
                 <p class="section-subtitle mb-5">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
@@ -387,7 +481,7 @@
         </section>
 
         <!-- 4️⃣ Updated Fees Table -->
-        <section class="section-padding">
+        <section id="fees" class="section-padding">
             <div class="container">
                 <h2 class="mb-2 section-title">Updated Fees for Each Courses in {{ date('Y') }}</h2>
                 <p class="section-subtitle mb-4">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
@@ -439,7 +533,7 @@
         </section>
 
         <!-- 5️⃣ Benefits with Pill Image -->
-        <section class="section-padding bg-soft-pink">
+        <section id="benefits" class="section-padding bg-soft-pink">
             <div class="container">
                 <h2 class="mb-2 section-title">Benefits of {{ $college->name ?? 'Amity University Online' }}</h2>
                 <p class="section-subtitle mb-5">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
@@ -482,7 +576,7 @@
         </section>
 
         <!-- 6️⃣ Confused between colleges? CTA -->
-        <section class="section-padding">
+        <section id="confused" class="section-padding">
             <div class="container">
                 <div class="cta-banner row align-items-center shadow-sm">
                     <div class="col-lg-7 py-2 position-relative z-1">
@@ -502,7 +596,7 @@
         </section>
 
         <!-- 7️⃣ Program Benefits -->
-        <section class="section-padding pt-0">
+        <section id="program-benefits" class="section-padding pt-0">
             <div class="container">
                 <h2 class="mb-2 section-title">{{ $college->name ?? 'Amity University Online' }}'s Program Benefits</h2>
                 <p class="section-subtitle mb-5">Amity University Online offers UGC-accredited online degrees, diplomas, and certifications in India, providing learners with a digitally advanced platform and globally recognized education designed to meet modern industry needs and support career growth.</p>
@@ -532,7 +626,7 @@
         </section>
 
         <!-- 8️⃣ Hiring Partner -->
-        <section class="py-5" style="background-color: #f8fafc;">
+        <section id="hiring-partner" class="py-5" style="background-color: #f8fafc;">
             <div class="container text-center">
                 <h3 class="mb-2 section-title fs-4">Hiring Partner of {{ $college->name ?? 'Amity University Online' }}</h3>
                 <p class="section-subtitle mb-5 mx-auto text-center" style="max-width: 600px;">Unlimited access to world class courses, hands-on projects, and job-ready certificate programs.</p>
@@ -548,5 +642,149 @@
                 </div>
             </div>
         </section>
+
+        <!-- 9️⃣ FAQs -->
+        <section id="faq" class="py-5 bg-white">
+            <div class="container my-4" style="max-width: 900px;">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold mb-3 section-underline d-inline-block pb-2" style="font-family: 'Playfair Display', serif; color: #111827;">Frequently Asked Questions</h2>
+                    <p class="text-muted">Everything you need to know about our online programs.</p>
+                </div>
+                
+                <div class="accordion accordion-flush rounded-4 shadow-sm border p-2 p-md-4" id="universityFaq">
+                    <div class="accordion-item border-0 mb-3 bg-white border-bottom">
+                        <h2 class="accordion-header" id="faq-headingOne">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseOne" aria-expanded="false" aria-controls="faq-collapseOne">
+                                Is the online degree from {{ $college->name ?? 'Amity University Online' }} valid?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseOne" class="accordion-collapse collapse" aria-labelledby="faq-headingOne" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                Yes, absolutely. The degree is officially entitled by UGC-DEB. It holds the exact same weightage and global recognition as a traditional on-campus degree. It is completely valid for Government exams, corporate jobs, and higher studies abroad.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 bg-white border-bottom">
+                        <h2 class="accordion-header" id="faq-headingTwo">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseTwo" aria-expanded="false" aria-controls="faq-collapseTwo">
+                                What is the eligibility for the online MBA program?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseTwo" class="accordion-collapse collapse" aria-labelledby="faq-headingTwo" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                Candidates must possess a Bachelor's degree (minimum 3 years in duration) in any discipline from a recognized University. A minimum aggregate score of 50% (45% for reserved categories) is generally required. No prior work experience is mandatory.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 bg-white border-bottom">
+                        <h2 class="accordion-header" id="faq-headingThree">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseThree" aria-expanded="false" aria-controls="faq-collapseThree">
+                                Are exams conducted online?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseThree" class="accordion-collapse collapse" aria-labelledby="faq-headingThree" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                Yes! The examination process is fully digitized and powered by AI-proctoring. You can securely take all your semester examinations from the comfort of your home at your scheduled date and time using a reliable internet connection and a webcam.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 bg-white border-bottom">
+                        <h2 class="accordion-header" id="faq-headingFour">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseFour" aria-expanded="false" aria-controls="faq-collapseFour">
+                                Is placement assistance provided?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseFour" class="accordion-collapse collapse" aria-labelledby="faq-headingFour" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                We offer robust 100% placement assistance. As an enrolled learner, you get exclusive access to our career-services portal, invitations to virtual job fairs, resume-building workshops, and one-on-one interview preparation sessions led by industry experts.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 mb-3 bg-white border-bottom">
+                        <h2 class="accordion-header" id="faq-headingFive">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseFive" aria-expanded="false" aria-controls="faq-collapseFive">
+                                What is the fee structure and are there EMI options?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseFive" class="accordion-collapse collapse" aria-labelledby="faq-headingFive" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                The fee structure varies independently by the specialization chosen. However, we strive to make education affordable. No-cost EMIs, flexible semester-wise fee payments, and merit-based scholarship grants are actively available to ease financial stress.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item border-0 bg-white">
+                        <h2 class="accordion-header" id="faq-headingSix">
+                            <button class="accordion-button fw-bold fs-5 bg-white text-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-collapseSix" aria-expanded="false" aria-controls="faq-collapseSix">
+                                Do I need to visit the physical campus at any time?
+                            </button>
+                        </h2>
+                        <div id="faq-collapseSix" class="accordion-collapse collapse" aria-labelledby="faq-headingSix" data-bs-parent="#universityFaq">
+                            <div class="accordion-body text-muted lh-lg">
+                                It is completely optional. The entire learning lifecycle—from application submission and daily classes to assignment submissions, exams, and degree graduation—is maintained 100% online.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
+</div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sidebar-nav .nav-link, .mobile-nav .nav-link');
+
+    // Scrollspy logic
+    const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -70% 0px',
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${id}`) {
+                        link.classList.add('active');
+                        // Auto-scroll mobile nav
+                        if (link.closest('.mobile-nav')) {
+                            link.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                        }
+                    }
+                });
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+
+    // Smooth scroll for nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                const navHeight = 100;
+                window.scrollTo({
+                    top: targetSection.offsetTop - navHeight,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+</script>
 @endsection

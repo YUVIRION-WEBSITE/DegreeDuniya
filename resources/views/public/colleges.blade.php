@@ -4,76 +4,145 @@
 
 @section('content')
 
-   <!-- Search Section -->
-    <section class="py-5" style="background: linear-gradient(to bottom, var(--background-light), transparent);">
-        <div class="container" style="max-width: 1280px;">
-            <div class="position-relative animate-slide-in">
-                <svg class="position-absolute start-0 top-50 translate-middle-y" style="width: 20px; height: 20px; color: #6c757d;" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-                <input type="search" placeholder="Search universities..." class="w-100 rounded-3 border border-secondary-subtle bg-white py-2 ps-5 pe-3 fs-6" style="transition: all 0.3s ease;" aria-label="Search for universities">
-            </div>
-        </div>
-    </section>
+{{-- Hero Pattern SVG defined --}}
+<style>
+    .bg-hero-pattern {
+        background-color: #f8fafc;
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c71585' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .custom-accent {
+        color: #c71585;
+    }
+    .bg-custom-accent {
+        background-color: #c71585;
+        color: #fff;
+    }
+    
+    /* Initially hide items before scroll reveal triggers */
+    .reveal-item {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s cubic-bezier(0.5, 0, 0, 1);
+    }
+    .reveal-item.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
 
-    <!-- Colleges List -->
-    <section class="py-5" style="background: linear-gradient(to bottom, var(--background-light), transparent);">
-        <div class="container" style="max-width: 1536px;">
-            <h2 class="fs-3 fs-sm-2 fw-bold text-primary text-center mb-4 animate-slide-in">Explore Colleges</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-                @forelse ($colleges as $college)
-                    <a href="{{ route('public.colleges.show', ['slug' => $college->slug]) }}" class="col text-decoration-none" aria-label="View details for {{ $college->name }}">
-                        <div class="card h-100 border-0 shadow-sm animate-slide-in" style="transition: all 0.3s ease;">
-                            <div class="ratio ratio-16x9 overflow-hidden rounded-top">
-                                <img alt="{{ $college->name }}" class="w-100 h-100 object-fit-cover" src="{{ $college->logo_path ?: 'https://via.placeholder.com/400x225' }}" loading="lazy">
+{{-- Top Banner --}}
+<section class="py-5 bg-hero-pattern">
+    <div class="container text-center py-sm-5 reveal-item" style="max-width: 900px;">
+        <h1 class="display-4 fw-bold mb-3" style="color: #1e293b;">Explore Leading Colleges</h1>
+        <p class="lead" style="color: #475569;">Find the perfect foundation for your future career. Browse, filter, and discover specific programs offered by distinguished colleges.</p>
+    </div>
+</section>
+
+{{-- Filter & Search Bar + Grid --}}
+<section class="py-5 bg-white">
+    <div class="container" style="max-width: 1280px;">
+        
+        {{-- Search & Filter Form --}}
+        <div class="card border-0 shadow-sm mb-5 p-4 reveal-item" style="border-radius: 16px; background: #f8fafc;">
+            <form method="GET" action="{{ route('public.colleges.index') }}">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-5">
+                        <label for="search" class="form-label fw-semibold text-secondary small text-uppercase">Search</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-search text-muted"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0 ps-0" id="search" name="search" value="{{ request('search') }}" placeholder="College name or location...">
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label class="form-label fw-semibold text-secondary small text-uppercase">Type</label>
+                        <div class="d-flex gap-3 mt-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="type_all" value="" {{ request('type') == '' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_all">All</label>
                             </div>
-                            <div class="card-body p-3">
-                                <h3 class="fs-6 fw-semibold text-primary text-truncate">{{ $college->name }}</h3>
-                                <p class="fs-7 text-secondary text-truncate">
-                                    {{ $college->university_id ? \App\Models\University::find($college->university_id)->name ?? 'N/A' : 'Independent' }}
-                                </p>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="type_gov" value="government" {{ request('type') == 'government' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_gov">Govt.</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="type" id="type_private" value="private" {{ request('type') == 'private' ? 'checked' : '' }}>
+                                <label class="form-check-label" for="type_private">Private</label>
                             </div>
                         </div>
-                    </a>
-                @empty
-                    <p class="text-center fs-6 text-dark animate-slide-in" role="alert">No colleges are currently available. Please check back later.</p>
-                @endforelse
-            </div>
-            <!-- Pagination -->
-            @if ($colleges->hasPages())
-                <nav aria-label="College pagination" class="mt-4">
-                    <ul class="pagination justify-content-center">
-                        <!-- Previous Page Link -->
-                        @if ($colleges->onFirstPage())
-                            <li class="page-item disabled">
-                                <span class="page-link">Previous</span>
-                            </li>
-                        @else
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $colleges->previousPageUrl() }}" aria-label="Previous page">Previous</a>
-                            </li>
-                        @endif
-
-                        <!-- Pagination Links -->
-                        @foreach ($colleges->getUrlRange(1, $colleges->lastPage()) as $page => $url)
-                            <li class="page-item {{ $page == $colleges->currentPage() ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $url }}">{{ $page }}</a>
-                            </li>
-                        @endforeach
-
-                        <!-- Next Page Link -->
-                        @if ($colleges->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $colleges->nextPageUrl() }}" aria-label="Next page">Next</a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link">Next</span>
-                            </li>
-                        @endif
-                    </ul>
-                </nav>
-            @endif
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <label for="sort" class="form-label fw-semibold text-secondary small text-uppercase">Sort By</label>
+                        <select id="sort" name="sort" class="form-select">
+                            <option value="name_asc" {{ request('sort') == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
+                            <option value="name_desc" {{ request('sort') == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
+                            <option value="rating_desc" {{ request('sort') == 'rating_desc' ? 'selected' : '' }}>Highest Rating</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <button type="submit" class="btn bg-custom-accent w-100 fw-semibold" style="border-radius: 8px;">Filter</button>
+                    </div>
+                </div>
+            </form>
         </div>
-    </section>
+
+        {{-- Grid --}}
+        <div class="row row-cols-2 row-cols-md-3 g-4" id="college-grid">
+            @forelse ($colleges as $college)
+                <div class="col reveal-item">
+                    <x-multidetail-college-card :college="$college" />
+                </div>
+            @empty
+                <div class="col-12 text-center py-5 reveal-item">
+                    <div class="p-5 bg-light rounded-4 shadow-sm border border-light-subtle">
+                        <i class="bi bi-search fs-1 text-muted mb-3"></i>
+                        <h3 class="fs-4 text-dark fw-bold">No Colleges Found</h3>
+                        <p class="text-secondary">Try adjusting your filters or search terms.</p>
+                        <a href="{{ route('public.colleges.index') }}" class="btn btn-outline-secondary mt-2">Clear Filters</a>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+        
+        {{-- Pagination --}}
+        @if ($colleges->hasPages())
+            <div class="mt-5 d-flex justify-content-center reveal-item">
+                {{ $colleges->links('pagination::bootstrap-5') }}
+            </div>
+        @endif
+        
+    </div>
+</section>
+
+{{-- Vanilla JS Scroll Reveal --}}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add a slight stagger effect based on element index in the viewport chunk
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100); 
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-item').forEach(element => {
+        observer.observe(element);
+    });
+});
+</script>
+
 @endsection
