@@ -30,7 +30,11 @@ Route::get('/welcome', function () {
 });
 
 // Public Routes
+<<<<<<< HEAD
 Route::name('public.')->group(function () {
+=======
+Route::prefix('public')->name('public.')->group(function () {
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/universities', [UniversityController::class, 'index'])->name('universities.index');
     Route::get('/universities/{slug}', [UniversityController::class, 'show'])->name('universities.show');
@@ -60,12 +64,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Authenticated Admin Routes
     Route::middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+<<<<<<< HEAD
 
         // Profile Routes
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
         Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::get('/profile/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('profile.change-password');
         Route::put('/profile/change-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+=======
+        
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile/change-password', [ProfileController::class, 'showChangePasswordForm'])->name('profile.change-password');
+    Route::put('/profile/change-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 
         // University Routes
         Route::resource('universities', AdminUniversityController::class)->except(['show']);
@@ -104,7 +117,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/support', [SupportController::class, 'index'])->name('support.index');
         Route::post('/support', [SupportController::class, 'store'])->name('support.store');
     });
+<<<<<<< HEAD
 });
 
 
 // rahul change on 28 feb
+=======
+});
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4

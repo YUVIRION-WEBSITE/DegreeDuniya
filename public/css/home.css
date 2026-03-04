@@ -1,10 +1,16 @@
 :root {
+<<<<<<< HEAD
     --primary: #c71585;
     /* Magenta */
     --secondary: #1e1b4b;
     /* Navy Blue */
     --accent: #e6e6fa;
     /* Light lavender */
+=======
+    --primary: #c71585; /* Magenta */
+    --secondary: #1e1b4b; /* Navy Blue */
+    --accent: #e6e6fa; /* Light lavender */
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     /* --background-light: #f9f9f9; */
     --background-dark: #1e1b4b;
     --accent-color: #c71585;
@@ -209,7 +215,10 @@ footer a:hover {
         opacity: 0;
         transform: translateY(10px);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     to {
         opacity: 1;
         transform: translateY(0);
@@ -223,23 +232,35 @@ footer a:hover {
 .delay-100 {
     animation-delay: 0.1s;
 }
+<<<<<<< HEAD
 
 .delay-200 {
     animation-delay: 0.2s;
 }
 
+=======
+.delay-200 {
+    animation-delay: 0.2s;
+}
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 .delay-300 {
     animation-delay: 0.3s;
 }
 
 @keyframes blink-apply {
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     0%,
     100% {
         transform: scale(1);
         opacity: 1;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     50% {
         transform: scale(1.05);
         opacity: 0.85;
@@ -466,12 +487,18 @@ svg {
     font-size: 1rem;
     border-radius: 20px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 .about-image img {
     border-radius: 20px;
     margin-top: 10px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 .decorative-circle {
     position: absolute;
     width: 150px;
@@ -517,6 +544,7 @@ svg {
     left: 50%;
     bottom: 0;
     transform: translateX(-50%);
+<<<<<<< HEAD
     width: 60px;
     /* underline length */
     height: 3px;
@@ -527,6 +555,14 @@ svg {
 }
 
 /* 
+=======
+    width: 60px; /* underline length */
+    height: 3px; /* underline thickness */
+    background-color: #c71585; /* your theme color */
+    border-radius: 2px;
+}
+
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 .hero-section {
     background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
     position: relative;
@@ -550,7 +586,11 @@ svg {
             transparent 50%
         );
     pointer-events: none;
+<<<<<<< HEAD
 } */
+=======
+}
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 
 .text-gradient {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
@@ -597,15 +637,24 @@ svg {
 }
 
 @media (max-width: 991px) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
     .text-content-wrapper,
     .image-content-wrapper {
         min-height: 60vh !important;
     }
 
+<<<<<<< HEAD
     /* .hero-section {
         min-height: auto !important;
     } */
+=======
+    .hero-section {
+        min-height: auto !important;
+    }
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 
     .display-3 {
         font-size: 2.5rem !important;
@@ -632,4 +681,8 @@ svg {
     .parallax-search-section {
         background-attachment: scroll;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4

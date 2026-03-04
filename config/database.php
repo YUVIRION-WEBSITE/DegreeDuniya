@@ -59,7 +59,11 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
+<<<<<<< HEAD
                 (defined('Pdo\Mysql::ATTR_SSL_CA') ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+=======
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
             ]) : [],
         ],
 
@@ -79,7 +83,11 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
+<<<<<<< HEAD
                 (defined('Pdo\Mysql::ATTR_SSL_CA') ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => env('MYSQL_ATTR_SSL_CA'),
+=======
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
             ]) : [],
         ],
 
@@ -148,7 +156,11 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
+<<<<<<< HEAD
             'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')) . '-database-'),
+=======
+            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
+>>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
