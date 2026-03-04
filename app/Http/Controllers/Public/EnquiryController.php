@@ -29,10 +29,4 @@ class EnquiryController extends Controller
         $colleges = College::where('university_id', $universityId)->get(['id', 'name']);
         return response()->json($colleges);
     }
-
-    public function getCourses($collegeId)
-    {
-        $courses = Course::where('college_id', $collegeId)->get(['id', 'name']);
-        return response()->json($courses);
-    }
 }

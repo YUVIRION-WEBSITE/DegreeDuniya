@@ -4,13 +4,12 @@
     <div class="container" style="max-width: 1800px;">
 
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold" style="font-family: 'Playfair Display', serif; 
-                                               background: linear-gradient(135deg, #c71585, #d4af37);
-                                               -webkit-background-clip: text;
-                                               -webkit-text-fill-color: transparent;">
+            <h2 class="section-underline fs-2 fs-sm-2 fw-bold text-center mb-4" style="font-family: 'Playfair Display', serif; ">
                 What Our Students Say
             </h2>
-            <p class="text-muted fs-5">Real experiences from real achievers</p>
+            <p class="text-muted fs-5" style="background: linear-gradient(135deg, #c71585, #d4af37);
+                                               -webkit-background-clip: text;
+                                               -webkit-text-fill-color: transparent;">Real experiences from real achievers</p>
         </div>
 
         <div class="testimonial-slider position-relative">
@@ -23,7 +22,7 @@
 
                 @foreach ($dupTestimonials as $testimonial)
                     <div class="testimonial-slide px-3">
-                        <div class="testimonial-card h-100 position-relative overflow-hidden">
+                        <div class="testimonial-card h-80 position-relative overflow-hidden">
                             <!-- Golden Gradient Border Effect -->
                             <div class="golden-glow"></div>
 

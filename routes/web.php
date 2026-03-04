@@ -36,8 +36,6 @@ Route::name('public.')->group(function () {
     Route::get('/universities/{slug}', [UniversityController::class, 'show'])->name('universities.show');
     Route::get('/colleges', [CollegeController::class, 'index'])->name('colleges.index');
     Route::get('/colleges/{slug}', [CollegeController::class, 'show'])->name('colleges.show');
-    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
-    Route::get('/courses/{slug}', [CourseController::class, 'show'])->name('courses.show');
     Route::get('/enquiry', [EnquiryController::class, 'create'])->name('enquiry.create');
     Route::post('/enquiry', [EnquiryController::class, 'store'])->name('enquiry.store');
     Route::get('/universities/{universityId}/colleges', [EnquiryController::class, 'getColleges']);

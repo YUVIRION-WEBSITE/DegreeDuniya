@@ -220,7 +220,6 @@
 
 
     <!-- Search Section -->
-<<<<<<< HEAD
     <!-- Parallax Search Section -->
     <section class="parallax-search-section position-relative py-4 py-sm-5 py-md-5">
         <div class="parallax-overlay"></div>
@@ -249,32 +248,10 @@
             <h1>Why Should You Choose Us</h1>
         </div>
         <div class="container-fluid">
-=======
- <!-- Parallax Search Section -->
-<section class="parallax-search-section position-relative py-5">
-    <div class="parallax-overlay"></div>
-    
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="text-center text-white mb-4">
-            <h2 class="fw-bold">Find Your Perfect University</h2>
-        </div>
-        <div class="position-relative animate-slide-in max-w-4xl mx-auto">
-            <input type="search" placeholder="Search universities, colleges, or courses..." 
-                   class="w-100 rounded-3 border-0 py-4 px-5 fs-5 shadow-lg" style="background: rgba(255,255,255,0.95);">
-        </div>
-    </div>
-</section>
-
-    <!-- About Section -->
-     <section class="about-section">
-      <div class="d-flex justify-content-center p-1 fw-bold  section-underline" style="font-family: 'Playfair Display', serif;"><h1>Why Should You Choose Us</h1></div>
-      <div class="container-fluid">
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <h1 class="section-headline">Empowering Students to Achieve Their Dreams</h1>
                     <p class="section-subheadline">Your trusted partner in education and career success</p>
-<<<<<<< HEAD
 
                     <div class="about-text">
                         <p>We believe every student deserves personalized guidance to unlock their full potential. Our
@@ -282,11 +259,6 @@
                             help you navigate the complex journey of university admissions and career development. With
                             years of experience and a deep commitment to student success, we transform aspirations into
                             achievements, one milestone at a time.</p>
-=======
-                    
-                    <div class="about-text">
-                        <p>We believe every student deserves personalized guidance to unlock their full potential. Our comprehensive services combine expert mentorship, strategic planning, and unwavering support to help you navigate the complex journey of university admissions and career development. With years of experience and a deep commitment to student success, we transform aspirations into achievements, one milestone at a time.</p>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                     </div>
 
                     <div class="features-list">
@@ -296,12 +268,8 @@
                             </div>
                             <div class="feature-content">
                                 <h4>University Admissions Excellence</h4>
-<<<<<<< HEAD
                                 <p>Expert guidance through every step of the application process, from college selection to
                                     acceptance.</p>
-=======
-                                <p>Expert guidance through every step of the application process, from college selection to acceptance.</p>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             </div>
                         </div>
 
@@ -311,12 +279,8 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Personalized Career Counseling</h4>
-<<<<<<< HEAD
                                 <p>Discover your passion and chart a career path aligned with your strengths and
                                     aspirations.</p>
-=======
-                                <p>Discover your passion and chart a career path aligned with your strengths and aspirations.</p>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             </div>
                         </div>
 
@@ -326,12 +290,8 @@
                             </div>
                             <div class="feature-content">
                                 <h4>One-on-One Mentorship</h4>
-<<<<<<< HEAD
                                 <p>Dedicated mentors who understand your unique journey and provide tailored support
                                     throughout.</p>
-=======
-                                <p>Dedicated mentors who understand your unique journey and provide tailored support throughout.</p>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             </div>
                         </div>
 
@@ -341,12 +301,8 @@
                             </div>
                             <div class="feature-content">
                                 <h4>Study Abroad Support</h4>
-<<<<<<< HEAD
                                 <p>Navigate international opportunities with confidence through comprehensive guidance and
                                     resources.</p>
-=======
-                                <p>Navigate international opportunities with confidence through comprehensive guidance and resources.</p>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             </div>
                         </div>
                     </div>
@@ -356,13 +312,8 @@
                     <div class="about-image-wrapper">
                         <div class="decorative-circle"></div>
                         <div class="about-image">
-<<<<<<< HEAD
                             <img src="{{ asset('Images/about.jpg') }}" alt="">
 
-=======
-                          <img src="{{ asset('Images/about.jpg') }}" alt="">
-                          
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             <img src="{{ asset('Images/about.jpg') }}" alt="">
                         </div>
                     </div>
@@ -373,25 +324,16 @@
     {{-- universities section --}}
     <section class="py-5" style="background: linear-gradient(to bottom, var(--background-light), transparent);">
         <div class="container" style="max-width: 1536px;">
-<<<<<<< HEAD
             <h2 class="fs-2 fs-sm-2 fw-bold text-center mb-4 section-underline"
                 style="font-family: 'Playfair Display', serif;">Featured Universities</h2>
-=======
-            <h2 class="fs-2 fs-sm-2 fw-bold text-center mb-4 section-underline" style="font-family: 'Playfair Display', serif;">Featured Universities</h2>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 
             <div class="row g-4">
 
                 @foreach ($universities as $university)
                     <div class="col-12 col-sm-6 col-lg-4">
                         <a href="{{ route('public.universities.show', ['slug' => $university->slug]) }}"
-<<<<<<< HEAD
                             class="text-decoration-none">
 
-=======
-                          class="text-decoration-none">
-                            
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             <div class="service-card">
 
                                 <!-- Hover Arrow -->
@@ -430,25 +372,15 @@
     <!-- Top Colleges -->
     <section class="py-5" style="background: linear-gradient(to bottom, var(--background-light), transparent);">
         <div class="container" style="max-width: 1536px;">
-<<<<<<< HEAD
             <h2 class="section-underline fs-2 fs-sm-2 fw-bold text-center mb-4"
                 style="font-family: 'Playfair Display', serif;">
                 Top Colleges
             </h2>
-=======
-            <h2 class="section-underline fs-2 fs-sm-2 fw-bold text-center mb-4" style="font-family: 'Playfair Display', serif;">
-                Top Colleges
-            </h2>   
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
             <div class="row g-4">
                 @foreach ($colleges as $college)
                     <div class="col-12 col-sm-6 col-lg-4">
                         <a href="{{ route('public.colleges.show', ['slug' => $college->slug]) }}"
-<<<<<<< HEAD
                             class="text-decoration-none">
-=======
-                        class="text-decoration-none">
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
                             <div class="service-card">
                                 <!-- Hover Arrow -->
                                 <div class="arrow-icon">
@@ -476,66 +408,8 @@
             </div>
         </div>
     </section>
-    <!-- Popular Courses -->
-    <section class="py-5" style="background: linear-gradient(to bottom, var(--background-light), transparent);">
-        <div class="container" style="max-width: 1536px;">
-<<<<<<< HEAD
-            <h2 class="fs-2 fs-sm-2 fw-bold text-center mb-4 section-underline"
-                style="font-family: 'Playfair Display', serif;">
-=======
-            <h2 class="fs-2 fs-sm-2 fw-bold text-center mb-4 section-underline" style="font-family: 'Playfair Display', serif;">
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
-                Popular Courses
-            </h2>
-            <div class="row g-4">
-                @foreach ($courses as $course)
-                    <div class="col-12 col-sm-6 col-lg-4">
-                        <a href="{{ route('public.courses.show', ['slug' => $course->slug]) }}"
-<<<<<<< HEAD
-                            class="text-decoration-none">
-=======
-                        class="text-decoration-none">
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
-
-                            <div class="service-card">
-
-                                <!-- Hover Arrow -->
-                                <div class="arrow-icon">
-                                    <i class="bi bi-arrow-up-right"></i>
-                                </div>
-
-                                <div class="card-body">
-
-                                    <!-- Course Name -->
-                                    <h3 class="card-title text-pink">
-                                        {{ $course->name }}
-                                    </h3>
-
-                                    <!-- Duration -->
-                                    <p class="card-text text-secondary">
-                                        {{ $course->duration ?? 'Duration not available' }}
-                                    </p>
-
-                                    <!-- Image -->
-                                    <div class="card-image">
-                                        <img src="{{ $course->image_path ?: 'https://via.placeholder.com/400x225' }}"
-                                            alt="{{ $course->name }}">
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
 
     @include('public.homeSections.testimonials');
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
 
 
 
@@ -546,14 +420,10 @@
     <section class="py-5" style="background: rgba(199, 21, 133, 0.1);">
         <div class="container text-center animate-slide-in" style="max-width: 1280px;">
             <h2 class="fs-3 fs-sm-2 fw-bold ">Ready to Start Your Journey?</h2>
-<<<<<<< HEAD
             <a href="{{ route('public.universities.index') }}"
                 class="mt-3 d-inline-flex align-items-center justify-content-center btn btn-primary fw-semibold shadow"
                 style="height: 40px; padding: 0 20px; transition: all 0.3s ease;"
                 aria-label="Explore universities">Explore More</a>
-=======
-            <a href="{{ route('public.universities.index') }}" class="mt-3 d-inline-flex align-items-center justify-content-center btn btn-primary fw-semibold shadow" style="height: 40px; padding: 0 20px; transition: all 0.3s ease;" aria-label="Explore universities">Explore More</a>
->>>>>>> a7659ad03ab9c8da35082f472ad7c37f32c5eaa4
         </div>
     </section>
 

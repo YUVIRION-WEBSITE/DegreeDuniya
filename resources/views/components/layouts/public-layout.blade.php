@@ -41,7 +41,7 @@
             display: inline-flex;
             gap: 2.5rem;
             white-space: nowrap;
-            /* animation: marquee 18s linear infinite; */
+            animation: marquee 28s linear infinite;
             padding-left: 100%;
         }
 
@@ -93,7 +93,6 @@
                             <li class="nav-item"><a href="{{ route('public.home') }}" class="nav-link animate-slide-in">Home</a></li>
                             <li class="nav-item"><a href="{{ route('public.universities.index') }}" class="nav-link animate-slide-in delay-100">Universities</a></li>
                             <li class="nav-item"><a href="{{ route('public.colleges.index') }}" class="nav-link animate-slide-in delay-100">Colleges</a></li>
-                            <li class="nav-item"><a href="{{ route('public.courses.index') }}" class="nav-link animate-slide-in delay-100">Courses</a></li>
                             <li class="nav-item"><a href="{{ route('public.enquiry.create') }}" class="btn btn-apply animate-slide-in delay-200 blink-apply">Apply Now</a></li>
                         </ul>
                     </div>
@@ -119,16 +118,8 @@
                         <ul class="list-unstyled">
                             <li><a href="{{ route('public.universities.index') }}" class="fs-6">Universities</a></li>
                             <li><a href="{{ route('public.colleges.index') }}" class="fs-6">Colleges</a></li>
-                            <li><a href="{{ route('public.courses.index') }}" class="fs-6">Courses</a></li>
                             <li><a href="{{ route('public.contact.create') }}" class="fs-6">Contact</a></li>
                         </ul>
-                    </div>
-                    <div class="col-md-3 animate-slide-in delay-200">
-                        <h3>Stay Updated</h3>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Enter your email" aria-label="Email for newsletter" required>
-                            <button type="submit" class="mt-2">Subscribe</button>
-                        </form>
                     </div>
                     <div class="col-md-3 animate-slide-in delay-300">
                         <h3>Follow Us</h3>
@@ -144,6 +135,8 @@
                             </a>
                         </div>
                     </div>
+
+
                 </div>
                 <div class="mt-4 pt-4 border-top text-center">
                     <p class="fs-6">&copy; {{ date('Y') }} EduConnect. All rights reserved.</p>
